@@ -3,50 +3,53 @@ ingredients_list = []
 
 n = int(input('How many recipes would you like to enter? '))
 
-def take_recipe(name='No Name', cooking_time='No cooking time', ingredients='No ingredients', difficulty='No difficulty', recipe='No recipe'):
-  name = input('Enter the name of your recipe: ')
-  cooking_time = int(
+
+def take_recipe(name='No name', cooking_time='No cooking time', ingredients='No ingredients', difficulty='No difficulty', recipe='No recipe'):
+    name = input('Enter the name of your recipe: ')
+    cooking_time = int(
       input('Enter the cooking time for your recipe in minutes: '))
-  ingredients = input('Enter the ingredients for your recipe: ')
-  recipe = {
+    ingredients = input('Enter the ingredients for your recipe: ')
+    recipe = {
       'Name': name,
       'Cooking_time': cooking_time,
       'Ingredients': ingredients.split(', '),
       'Difficulty': difficulty
-  }
-  return recipe
+    }
+    return recipe
 
-  for i in range(n):
-      recipe = take_recipe()
-      for ingredient in recipe['Ingredients']:
+
+for i in range(n):
+    recipe = take_recipe()
+    for ingredient in recipe['Ingredients']:
         if ingredient not in ingredients_list:
           ingredients_list.append(ingredient)
-          recipes_list.append(recipe)
+    recipes_list.append(recipe)
 
-          for recipe in recipes_list:
+for recipe in recipes_list:
             if int(recipe['Cooking_time']) < 10 and len(recipe['Ingredients']) < 4:
-              difficulty = 'Easy'
+                difficulty = 'Easy'
             elif int(recipe['Cooking_time']) < 10 and len(recipe['Ingredients']) >= 4:
                 difficulty = 'Medium'
             elif int(recipe['Cooking_time']) >= 10 and len(recipe['Ingredients']) >= 4:
-                  difficulty = 'Intermediate'
+                difficulty = 'Intermediate'
             elif int(recipe['Cooking_time']) >= 10 and len(recipe['Ingredients']) >= 4:
-                    difficulty = 'Hard'
+                difficulty = 'Hard'
 
-                    print('******************************')
-                    print('Recipe: ', recipe['Name'])
-                    print('Cooking Time (min): ', recipe['Cooking_time'])
-                    print('Ingredients: ')
-                    for ingredient in recipe['Ingredients']:
+            print('******************************')
+            print('Recipe: ', recipe['Name'])
+            print('Cooking Time (min): ', recipe['Cooking_time'])
+            print('Ingredients: ')
+            for ingredient in recipe['Ingredients']:
                       print(ingredient)
-                      print('Difficulty level: ', difficulty)
+            print('Difficulty level: ', difficulty)
 
-                    print('''Ingredients available across all recipes 
-                    ------------------------------------------ ''')
-                    inredients_list = []
-                    for recipe in recipes_list:
-                      for ingredient in recipe['Ingredients']:
-                        ingredients_list.append(ingredient)
-                        sorted_list = [i for i in sorted(ingredients_list)]
-                        for i in sorted_list:
-                          print(i)
+
+print('''Ingredients available across all recipes 
+------------------------------------------ ''')
+ingredients_list = []
+for recipe in recipes_list:
+    for ingredient in recipe['Ingredients']:
+      ingredients_list.append(ingredient)
+sorted_list = [i for i in sorted(ingredients_list)]
+for i in sorted_list:
+  print(i)
